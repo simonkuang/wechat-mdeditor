@@ -78,7 +78,7 @@ let WxRenderer = function (opts) {
       'text-align:right;' +
       'font-size:0.8em;' +
       'padding:5px10px0;' +
-      'line-height:15px;' +
+      'line-height:1.3em;' +
       'height:15px;' +
       'font-weight:600;' +
       '}</style>'

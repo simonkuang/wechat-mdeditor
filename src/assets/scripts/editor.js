@@ -30,12 +30,14 @@ let app = new Vue({
       themeOption: [
         { label: 'default', value: 'default', author: '张凯强' },
         { label: 'lyric', value: 'lyric', author: 'Lyric' },
-        { label: 'lupeng', value: 'lupeng', author: '鲁鹏' }
+        { label: 'lupeng', value: 'lupeng', author: '鲁鹏' },
+        { label: 'jasonng', value: 'jasonng', author: 'Jason NG' }
       ],
       styleThemes: {
         default: defaultTheme,
         lyric: lyricTheme,
-        lupeng: lupengTheme
+        lupeng: lupengTheme,
+        jasonng: JasonNGTheme
       },
       aboutDialogVisible: false
     };
@@ -115,7 +117,12 @@ let app = new Vue({
     },
     // 刷新右侧预览
     refresh: function () {
-      this.output = this.renderWeChat(this.editor.getValue(0))
+      let output = this.renderWeChat(this.editor.getValue(0));
+      let currentTheme = this.$data.styleThemes[this.currentTheme];
+      if ("afterRender" in currentTheme) {
+        output = currentTheme.afterRender(output);
+      }
+      this.output = output;
     },
     // 将左侧编辑器内容保存到 LocalStorage
     saveEditorContent: function () {
